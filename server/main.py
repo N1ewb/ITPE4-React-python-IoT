@@ -9,7 +9,7 @@ from db import  uploadUserData
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}})
+CORS(app, cors_allowed_origins="*")
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 streaming = False
