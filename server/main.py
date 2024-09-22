@@ -90,4 +90,6 @@ def handleuploadUserData():
 
 if __name__ == "__main__":
     print("Starting server...")
-    socketio.run(app, debug=True, port=5173, allow_unsafe_werkzeug=True)
+    socketio.run(app, host="0.0.0.0", port=5000, debug=False, use_reloader=False, 
+                 log_output=True, allow_unsafe_werkzeug=True)
+
