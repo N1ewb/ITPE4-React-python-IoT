@@ -9,7 +9,7 @@ const Signup = () => {
     console.log("Submitted");
   }
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-10 p-20 [&_h1]:text-indigo-800 [&_h1]:text-4xl font-bold">
+    <div className="w-full flex flex-col h-screen items-center justify-center gap-10 p-20 [&_h1]:text-indigo-800 [&_h1]:text-4xl font-bold">
       <div className="login-header">
         <h1>SIGN UP</h1>
       </div>
