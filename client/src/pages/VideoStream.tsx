@@ -6,7 +6,7 @@ const VideoStream: React.FC = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("https://itpe4-react-python-iot-2.onrender.com", {transports: ["websocket"],});
+    const newSocket = io("http://127.0.0.1:5173");
     setSocket(newSocket);
 
     newSocket.on("connect", () => {
@@ -14,7 +14,6 @@ const VideoStream: React.FC = () => {
     });
 
     newSocket.on("disconnect", () => {
-      console.log("Disconnected from server");
     });
 
     return () => {

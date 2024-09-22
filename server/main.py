@@ -9,8 +9,8 @@ from db import  uploadUserData
 
 
 app = Flask(__name__)
-CORS(app, cors_allowed_origins="*")
-socketio = SocketIO(app, cors_allowed_origins="*")
+CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}})
+socketio = SocketIO(app, cors_allowed_origins=["http://localhost:5173", "http://127.0.0.1:5173"])
 
 streaming = False
 stream_thread = None
@@ -56,15 +56,9 @@ def start_stream():
             for (ex, ey, ew, eh) in eyes:
                 cv2.rectangle(roi_color, (ex, ey), (ex+ ew, ey+ eh), (0, 255, 0), 5)
         socketio.emit('video_frame', {'data': frame_data})
-        time.sleep(0.02)
-        cv2.imshow("Frame", frame)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            streaming = False  
-            break
-
+        time.sleep(0.03)
+       
     cap.release()
-    cv2.destroyAllWindows()
 
 
 
@@ -90,6 +84,5 @@ def handleuploadUserData():
 
 if __name__ == "__main__":
     print("Starting server...")
-    socketio.run(app, host="0.0.0.0", port=5000, debug=False, use_reloader=False, 
-                 log_output=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, debug=True, port=5173, allow_unsafe_werkzeug=True)
 
