@@ -6,9 +6,9 @@ const VideoStream: React.FC = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("http://127.0.0.1:5173");
+    const newSocket = io("https://itpe4-react-python-iot-2.onrender.com", {transports: ["websocket"],});
     setSocket(newSocket);
-    console.log("Socket", newSocket);
+
     newSocket.on("connect", () => {
       console.log("Connected to server");
     });
@@ -25,7 +25,7 @@ const VideoStream: React.FC = () => {
   useEffect(() => {
     if (socket) {
       socket.on("video_frame", (data) => {
-        console.log("Received video frame:", data);
+    
         if (videoRef.current) {
           videoRef.current.src = `data:image/jpeg;base64,${data.data}`;
         }

@@ -1,19 +1,26 @@
 import { useRef } from "react";
 
-const Signup = () => {
-  const usernameRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef()
+const Signup: React.FC = () => {
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordRef = useRef<HTMLInputElement>(null);
 
-  async function handleSubmit() {
-    console.log("Submitted");
-  }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+    const confirmPassword = confirmPasswordRef.current?.value;
+
+    console.log("Submitted", { username, password, confirmPassword });
+   
+  };
+
   return (
     <div className="w-full flex flex-col h-screen items-center justify-center gap-10 p-20 [&_h1]:text-indigo-800 [&_h1]:text-4xl font-bold">
       <div className="login-header">
         <h1>SIGN UP</h1>
       </div>
-      <div className="login-content  w-1/2">
+      <div className="login-content w-1/2">
         <form
           className="p-10 shadow-md rounded-3xl flex flex-col gap-3 [&_input]:border-indigo-600 [&_input]:border-solid [&_input]:border-[1px] [&_input]:rounded-lg [&_input]:p-3"
           onSubmit={handleSubmit}
@@ -22,9 +29,8 @@ const Signup = () => {
           <input type="password" placeholder="Password" ref={passwordRef} />
           <input type="password" placeholder="Confirm Password" ref={confirmPasswordRef} />
           <button
-            className="bg-indigo-500  text-white p-3 rounded-lg hover:bg-indigo-800"
+            className="bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-800"
             type="submit"
-            onSubmit={handleSubmit}
           >
             Submit
           </button>
