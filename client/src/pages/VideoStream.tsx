@@ -6,7 +6,7 @@ const VideoStream: React.FC = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("https://itpe4-react-python-iot-2.onrender.com");
+    const newSocket = io("https://itpe4-react-python-iot-2.onrender.com", {transports: ["websocket"],});
     setSocket(newSocket);
     console.log("Socket", newSocket);
     newSocket.on("connect", () => {
