@@ -1,0 +1,10 @@
+Flask
+Flask-CORS
+opencv-python
+cmake
+dlib
+face-recognition
+face-recognition-models
+click
+numpy
+aiortc
