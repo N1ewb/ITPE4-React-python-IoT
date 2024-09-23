@@ -8,8 +8,15 @@ const VideoStream: React.FC = () => {
 
   useEffect(() => {
     console.log("Initializing socket connection...");
-    const newSocket = io("https://itpe4-react-python-iot.onrender.com/", {
-      transports: ['websocket'],
+
+    const socketUrl =
+      window.location.hostname === "localhost"
+        ? "http://127.0.0.1:5000"
+        : "https://itpe4-react-python-iot.onrender.com";
+
+    const newSocket = io(socketUrl, {
+      transports: ["websocket"],
+
       withCredentials: true,
     });
 
@@ -39,14 +46,14 @@ const VideoStream: React.FC = () => {
   useEffect(() => {
     if (socket && isStreaming) {
       console.log("Setting up video_data listener");
-      socket.on('video_data', (data: { data: string }) => {
+      socket.on("video_data", (data: { data: string }) => {
         if (videoRef.current) {
           videoRef.current.src = `data:image/jpeg;base64,${data.data}`;
         }
       });
-      
+
       return () => {
-        socket.off('video_data');
+        socket.off("video_data");
       };
     }
   }, [socket, isStreaming]);
@@ -76,12 +83,22 @@ const VideoStream: React.FC = () => {
       <h2 className="text-2xl text-indigo-800 font-bold">Face Scanner</h2>
 
       <div className="rounded-3xl h-[400px] w-[600px] text-center">
-        <img className="rounded-3xl border-solid border-2 border-indigo-400" ref={videoRef} alt="Video Stream" />
-        <p>{isStreaming ? "Your face is being scanned!" : "Stream is stopped"}</p>
+        <img
+          className="rounded-3xl border-solid border-2 border-indigo-400"
+          ref={videoRef}
+          alt="Video Stream"
+        />
+        <p>
+          {isStreaming ? "Your face is being scanned!" : "Stream is stopped"}
+        </p>
       </div>
       <div className="buttons flex flex-row gap-5 w-1/2 justify-center [&_button]:bg-indigo-600 [&_button]:rounded-md [&_button]:px-20 [&_button]:py-2 [&_button]:text-white">
-        <button onClick={handleStart} disabled={isStreaming}>Start</button>
-        <button onClick={handleStop} disabled={!isStreaming}>Stop</button>
+        <button onClick={handleStart} disabled={isStreaming}>
+          Start
+        </button>
+        <button onClick={handleStop} disabled={!isStreaming}>
+          Stop
+        </button>
       </div>
     </div>
   );
