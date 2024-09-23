@@ -12,3 +12,4 @@ numpy==1.23.5  # Required for OpenCV
 gunicorn==20.1.0  # Production server for Flask
 sqlalchemy==2.0.35
 Flask-SQLAlchemy==3.0.4
+flask-sqlalchemy==3.0.4
