@@ -10,9 +10,9 @@ const LandingPage = () => {
           backgroundImage: `url('/pexels-jakubzerdzicki-25473948.jpg')`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundSize: 'cover',
-          backgroundBlendMode: 'soft-light',
-          backgroundColor: '#323232'
+          backgroundSize: "cover",
+          backgroundBlendMode: "soft-light",
+          backgroundColor: "#323232",
         }}
       >
         <h1 className="text-indigo-400 text-6xl font-bold">
@@ -28,10 +28,10 @@ const LandingPage = () => {
           Get Started!
         </button>
       </div>
-      <div className="landing-page-content  flex flex-col items-center w-full z-10">
+      <div className="landing-page-content  flex flex-col items-center w-full">
         <div
           id="first-section"
-          className="first-section flex flex-row gap-20 mb-20 -mt-14 "
+          className="first-section flex flex-row gap-20 mb-12  "
         >
           <div className="col  rounded-lg h-[500px] w-[400px] shadow-lg">
             <img
@@ -58,9 +58,31 @@ const LandingPage = () => {
         <div id="second-section" className="second-section w-full ">
           <div className="second-sectioh-header w-full bg-indigo-100 px-20 py-10 flex flex-row items-center">
             {" "}
-            <h2>Internet of Things IoTs</h2>
+            <h2>Internet of Things (IoTs)</h2>
           </div>
-          <div className="second-section-content h-[20vh]"></div>
+          <div className="second-section-content px-20 py-5 flex flex-row items-center justify-center text-start">
+            <div className="col flex flex-col gap-5 w-1/2">
+              <p className="text-lg">
+                The Internet of Things (IoT) refers to the interconnected nature
+                of devices that communicate with each other via the internet.
+                This revolutionary technology transforms everyday objects into
+                smart devices, enabling them to collect and share data
+                seamlessly.
+              </p>
+              <p className="text-lg">
+                By leveraging IoT solutions, businesses can improve efficiency,
+                enhance user experiences, and create innovative services. From
+                smart homes to industrial automation, the applications of IoT
+                are vast and transformative.
+              </p>
+              <p className="text-lg">
+                Join us in exploring the endless possibilities of IoT and
+                discover how we can help you connect your devices to the
+                software that powers your operations.
+              </p>
+            </div>
+            <div className="col w-1/2"></div>
+          </div>
         </div>
       </div>
     </div>

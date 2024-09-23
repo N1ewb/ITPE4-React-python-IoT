@@ -10,3 +10,4 @@ requests==2.31.0
 psycopg2-binary==2.9.7  # PostgreSQL connector
 numpy==1.23.5  # Required for OpenCV
 gunicorn==20.1.0  # Production server for Flask
+sqlalchemy==2.0.35
