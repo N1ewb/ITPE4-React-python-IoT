@@ -5,11 +5,21 @@ import time
 from flask import Flask
 from flask_socketio import SocketIO
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 
+
+db = SQLAlchemy()
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:itpe4-iot-middleware@db.eemlsfydvnkuyfspddml.supabase.co:5432/postgres"
+db.init_app(app)
+
 CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}})
 socketio = SocketIO(app, cors_allowed_origins=["http://localhost:5173", "http://127.0.0.1:5173"])
 
+
+
+#Socketop
 streaming = False
 
 @app.route('/')
