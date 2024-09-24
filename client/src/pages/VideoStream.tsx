@@ -100,6 +100,7 @@ const VideoStream: React.FC = () => {
           Stop
         </button>
       </div>
+      
     </div>
   );
 };
