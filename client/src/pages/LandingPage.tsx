@@ -5,24 +5,25 @@ const LandingPage = () => {
   return (
     <div className="flex relative flex-col items-center gap-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-indigo-600 [&_h2]:m-0">
       <div
-        className="landing-page-header h-screen w-full flex flex-col items-center gap-5 pt-96 z-0"
-        style={{
-          backgroundImage: `url('/pexels-jakubzerdzicki-25473948.jpg')`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundBlendMode: "soft-light",
-          backgroundColor: "#323232",
-        }}
+        className="landing-page-header h-screen w-full flex flex-col items-center gap-10 pt-96 z-0"
+        // style={{
+        //   backgroundImage: `url('/pexels-jakubzerdzicki-25473948.jpg')`,
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundSize: "cover",
+        //   backgroundBlendMode: "soft-light",
+        //   backgroundColor: "#4C02C2",
+        // }}
       >
         <h1 className="text-indigo-400 text-6xl font-bold">
-          Welcome ITPE4 IoT Middleware!
+          <span className="font-light">Welcome ITPE4 </span>IoT Middleware!
         </h1>
         <p className="text-indigo-600">
-          A website for connecting IoT to software
+          A website for <span className="font-bold">connecting IoT</span> to software
         </p>
+        <div className="spacer h-20"></div>
         <button
-          className="bg-indigo-400 px-10 py-2 text-white text-2xl rounded-sm"
+          className="bg-indigo-400 px-32 py-10 text-white text-2xl rounded-xl hover:bg-indigo-600"
           onClick={() => navigate("/Video-stream")}
         >
           Get Started!
