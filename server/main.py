@@ -1,30 +1,14 @@
 import eventlet
 import cv2
 import base64
-import time
-from flask import Flask
 from flask_socketio import SocketIO
-from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
+from app import create_app
 
+app = create_app()
 
-db = SQLAlchemy()
-app = Flask(__name__)
+socketio = SocketIO(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:itpe4-iot-middleware@db.eemlsfydvnkuyfspddml.supabase.co:5432/postgres"
-db.init_app(app)
-
-CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173", "https://middleware-iot.vercel.app"]}})
-socketio = SocketIO(app, cors_allowed_origins=["http://localhost:5173", "http://127.0.0.1:5173","https://middleware-iot.vercel.app"])
-
-
-
-#Socketop
 streaming = False
-
-@app.route('/')
-def index():
-    return "WebSocket server is running!"
 
 @socketio.on('connect')
 def handle_connect():
@@ -53,7 +37,7 @@ def start_stream():
             print("Error: Could not read frame.")
             break
 
-        frame = cv2.resize(frame, (440, 280))
+        frame = cv2.resize(frame, (640, 480))
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         for (x, y, w, h) in faces:
@@ -77,8 +61,6 @@ def start_stream():
             break
 
         socketio.sleep(0.03)  # Use socketio.sleep instead of time.sleep
-
-    print(f'Streaming stopped. Total frames sent: {frame_count}')
     cap.release()
 
 @socketio.on('start_stream')
@@ -88,7 +70,7 @@ def handle_start_stream():
     if not streaming:
         print("Starting new stream")
         streaming = True
-        eventlet.spawn(start_stream)  # Use eventlet.spawn instead of threading
+        eventlet.spawn(start_stream)
     else:
         print("Stream already running")
 
@@ -97,7 +79,3 @@ def handle_stop_stream():
     global streaming
     print("Received stop_stream event")
     streaming = False
-
-if __name__ == "__main__":
-    print("Starting server...")
-    socketio.run(app, debug=True, port=5000)

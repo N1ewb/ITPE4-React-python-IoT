@@ -1,18 +1,35 @@
 import { useRef } from "react";
+import axios from "axios";
+import { axiosAPI } from "../lib/global";
 
-const Signup: React.FC = () => {
+const Signup= () => {
   const usernameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = usernameRef.current?.value;
+    const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
     const confirmPassword = confirmPasswordRef.current?.value;
 
-    console.log("Submitted", { username, password, confirmPassword });
-   
+    if (!username || !password || password !== confirmPassword) {
+      alert("Please fill out all fields and ensure passwords match.");
+      return;
+    }
+
+    try {
+      const response = await axiosAPI.post('/auth/register', { username,email, password });
+      alert(`User registered successfully: ${response.data}`);
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        console.error("Error during registration:", error.response?.data);
+        alert(error.response?.data?.message || "Something went wrong");
+      } else {
+        console.error("Unknown error:", error);
+      }
+    }
   };
 
   return (
@@ -26,8 +43,13 @@ const Signup: React.FC = () => {
           onSubmit={handleSubmit}
         >
           <input type="text" placeholder="Username" ref={usernameRef} />
+          <input type="email" placeholder="Email" ref={emailRef} />
           <input type="password" placeholder="Password" ref={passwordRef} />
-          <input type="password" placeholder="Confirm Password" ref={confirmPasswordRef} />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            ref={confirmPasswordRef}
+          />
           <button
             className="bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-800"
             type="submit"
