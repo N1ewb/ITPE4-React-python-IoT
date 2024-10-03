@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     } 
     try{
       const response = await axiosAPI.post('/auth/login', {email, password})
-      return response
+    
       alert("Logged in successfuly")
     }catch(error:Error | any){
       if(error instanceof Error){
