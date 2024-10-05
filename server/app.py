@@ -6,6 +6,7 @@ from sqlalchemy import inspect
 from views import views
 from auth import auth, init_app
 from extensions import db
+from main import setup_streaming
 # Initialize Flask app, database, and SocketIO
 # app = Flask(__name__)
 
@@ -43,12 +44,13 @@ def create_app():
         else:
             print("All required tables already exist.")
 
-    return app
+    return app, socketio
 
 if __name__ == "__main__":
     print("Starting server...")
-    app = create_app()
+    app,socketio = create_app()
     init_app(app)
+    setup_streaming(socketio)
     socketio.run(app, debug=True, port=5000)
 
 # if __name__ == "__main__":
