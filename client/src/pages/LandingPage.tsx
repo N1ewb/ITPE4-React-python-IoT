@@ -15,53 +15,51 @@ const LandingPage = () => {
           backgroundColor: "#323232",
         }}
       >
-        <h1 className="text-indigo-400 text-6xl font-bold">
+        <h1 className="text-indigo-400 text-6xl font-bold animate-pulse">
           Welcome ITPE4 IoT Middleware!
         </h1>
-        <p className="text-indigo-600">
+        <p className="text-indigo-600 animate-bounce">
           A website for connecting IoT to software
         </p>
-        <button
-          className="bg-indigo-400 px-10 py-2 text-white text-2xl rounded-sm"
-          onClick={() => navigate("/Video-stream")}
-        >
+        <button className="bg-indigo-400 px-10 py-2 text-white text-2xl rounded-sm transition-transform duration-300 ease-in-out hover:bg-indigo-500 hover:scale-105"
+          onClick={() => navigate("/Video-stream")}>
           Get Started!
         </button>
       </div>
       <div className="landing-page-content  flex flex-col items-center w-full">
         <div
           id="first-section"
-          className="first-section flex flex-row gap-20 mb-12  "
+          className="first-section flex flex-row gap-20 mb-12 "
         >
           <div className="col  rounded-lg h-[500px] w-[400px] shadow-lg">
             <img
               src="pexels-pixelcop-1619858.jpg"
               alt="iot"
-              className="h-auto max-h-[100%] w-full object-cover rounded-lg shadow-lg"
+              className="h-auto max-h-[100%] w-full object-cover rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-110 cursor-pointer"
             />
           </div>
           <div className="col rounded-lg h-[500px] w-[400px]">
             <img
               src="pexels-jakubzerdzicki-16423102.jpg"
               alt="iot"
-              className="h-auto max-h-[100%] w-full object-cover rounded-lg shadow-lg"
+              className="h-auto max-h-[100%] w-full object-cover rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-110 cursor-pointer"
             />
           </div>
           <div className="col rounded-lg h-[500px] w-[400px]">
             <img
               src="pexels-vishven-solanki-1441477-2779018.jpg"
               alt="iot"
-              className="h-auto max-h-[100%] w-full object-cover rounded-lg shadow-lg"
+              className="h-auto max-h-[100%] w-full object-cover rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-110 cursor-pointer"
             />
           </div>
         </div>
+
         <div id="second-section" className="second-section w-full ">
-          <div className="second-sectioh-header w-full bg-indigo-100 px-20 py-10 flex flex-row items-center">
-            {" "}
-            <h2>Internet of Things (IoTs)</h2>
-          </div>
-          <div className="second-section-content px-20 py-5 flex flex-row items-center justify-center text-start">
-            <div className="col flex flex-col gap-5 w-1/2">
+        <div className="second-section-header w-full bg-indigo-100 px-20 py-10 flex items-center justify-center">
+          <h2 className="text-center">Internet of Things (IoTs)</h2>
+        </div>
+          <div className="second-section-content px-20 py-5 w-full mt-6">
+            <div className="flex flex-col gap-7 w-3/5 mx-auto text-center">
               <p className="text-lg">
                 The Internet of Things (IoT) refers to the interconnected nature
                 of devices that communicate with each other via the internet.
