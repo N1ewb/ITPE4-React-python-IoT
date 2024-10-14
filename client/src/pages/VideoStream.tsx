@@ -8,6 +8,7 @@ const VideoStream: React.FC = () => {
 
   useEffect(() => {
     console.log("Initializing socket connection...");
+
     const socketUrl =
       window.location.hostname === "localhost"
         ? "http://127.0.0.1:5000"
@@ -15,6 +16,7 @@ const VideoStream: React.FC = () => {
 
     const newSocket = io(socketUrl, {
       transports: ["websocket"],
+
       withCredentials: true,
     });
 

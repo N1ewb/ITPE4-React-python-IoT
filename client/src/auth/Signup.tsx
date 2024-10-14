@@ -33,32 +33,41 @@ const Signup= () => {
   };
 
   return (
-    <div className="w-full flex flex-col h-screen items-center justify-center gap-10 p-20 [&_h1]:text-indigo-800 [&_h1]:text-4xl font-bold">
-      <div className="login-header">
-        <h1>SIGN UP</h1>
-      </div>
-      <div className="login-content w-1/2">
-        <form
-          className="p-10 shadow-md rounded-3xl flex flex-col gap-3 [&_input]:border-indigo-600 [&_input]:border-solid [&_input]:border-[1px] [&_input]:rounded-lg [&_input]:p-3"
-          onSubmit={handleSubmit}
-        >
-          <input type="text" placeholder="Username" ref={usernameRef} />
-          <input type="email" placeholder="Email" ref={emailRef} />
-          <input type="password" placeholder="Password" ref={passwordRef} />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            ref={confirmPasswordRef}
-          />
-          <button
-            className="bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-800"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
+    <div className="flex flex-col h-screen items-center justify-center bg-gray-100 p-10">
+  <div className="login-content w-full max-w-md">
+    <form
+      className="bg-white shadow-lg rounded-2xl p-8 flex flex-col gap-6 border border-gray-200"
+      onSubmit={handleSubmit}
+    >
+      <h1 className="text-indigo-800 text-4xl font-bold text-center mb-6">SIGN UP</h1>
+      <input 
+        type="text" 
+        placeholder="Username" 
+        ref={usernameRef} 
+        className="border border-indigo-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+      <input 
+        type="password" 
+        placeholder="Password" 
+        ref={passwordRef} 
+        className="border border-indigo-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+      <input 
+        type="password" 
+        placeholder="Confirm Password" 
+        ref={confirmPasswordRef} 
+        className="border border-indigo-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+      <button
+        className="bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-800 transition duration-200"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
   );
 };
 
