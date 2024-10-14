@@ -25,3 +25,4 @@ class FaceData(db.Model, UserMixin):
     user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
 
 
+#

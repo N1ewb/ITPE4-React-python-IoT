@@ -42,8 +42,14 @@ const Signup= () => {
       <h1 className="text-indigo-800 text-4xl font-bold text-center mb-6">SIGN UP</h1>
       <input 
         type="text" 
-        placeholder="Username" 
+        placeholder="username" 
         ref={usernameRef} 
+        className="border border-indigo-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      />
+      <input 
+        type="text" 
+        placeholder="email" 
+        ref={emailRef} 
         className="border border-indigo-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
       />
       <input 
