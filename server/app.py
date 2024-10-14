@@ -56,3 +56,4 @@ if __name__ == "__main__":
 # if __name__ == "__main__":
 #     print("Starting server...")
 #     socketio.run(app, debug=True, port=5000)
+#add this file to main
