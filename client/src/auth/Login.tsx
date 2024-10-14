@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { axiosAPI } from "../lib/global";
 import { Link } from "react-router-dom"
+import axios from "axios";
 
 const Login: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -14,15 +15,15 @@ const Login: React.FC = () => {
       alert("Please fill in fields")
       return;
     } 
-    try{
-      const response = await axiosAPI.post('/auth/login', {email, password})
-    
-      alert(`Logged in successfuly ${response}`)
-    }catch(error:Error | any){
-      if(error instanceof Error){
-        alert(`Error in logging in: ${error.message}`)
-      }else {
-        alert("Unknown Error")
+    try {
+      const response = await axiosAPI.post('/auth/login', { email, password });
+      alert(`User loggedin successfully: ${response.data}`);
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        console.error("Error during registration:", error.response?.data);
+        alert(error.response?.data?.message || "Something went wrong");
+      } else {
+        console.error("Unknown error:", error);
       }
     }
     
