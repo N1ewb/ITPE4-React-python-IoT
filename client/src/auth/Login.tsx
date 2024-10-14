@@ -1,16 +1,30 @@
 import { useRef } from "react";
+import { axiosAPI } from "../lib/global";
 import { Link } from "react-router-dom"
 
 const Login: React.FC = () => {
-  const usernameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); 
-    const username = usernameRef.current?.value;
+    const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-
-    console.log("Submitted", { username, password });
+    if(!email && !password){
+      alert("Please fill in fields")
+      return;
+    } 
+    try{
+      const response = await axiosAPI.post('/auth/login', {email, password})
+    
+      alert("Logged in successfuly")
+    }catch(error:Error | any){
+      if(error instanceof Error){
+        alert(`Error in logging in: ${error.message}`)
+      }else {
+        alert("Unknown Error")
+      }
+    }
     
   };
 
@@ -24,8 +38,8 @@ const Login: React.FC = () => {
       <h1 className="text-indigo-800 text-4xl font-bold text-center mb-6">Login</h1>
       <input 
         type="text" 
-        placeholder="Username" 
-        ref={usernameRef} 
+        placeholder="email" 
+        ref={emailRef} 
         className="border border-indigo-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-400"
       />
       <input 
