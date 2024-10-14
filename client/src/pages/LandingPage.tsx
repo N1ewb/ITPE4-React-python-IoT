@@ -5,15 +5,15 @@ const LandingPage = () => {
   return (
     <div className="flex relative flex-col items-center gap-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-indigo-600 [&_h2]:m-0">
       <div
-        className="landing-page-header h-screen w-full flex flex-col items-center gap-5 pt-96 z-0"
-        style={{
-          backgroundImage: `url('/pexels-jakubzerdzicki-25473948.jpg')`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundBlendMode: "soft-light",
-          backgroundColor: "#323232",
-        }}
+        className="landing-page-header h-screen w-full flex flex-col items-center gap-10 pt-96 z-0"
+        // style={{
+        //   backgroundImage: `url('/pexels-jakubzerdzicki-25473948.jpg')`,
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundSize: "cover",
+        //   backgroundBlendMode: "soft-light",
+        //   backgroundColor: "#4C02C2",
+        // }}
       >
         <h1 className="text-indigo-400 text-6xl font-bold animate-pulse">
           Welcome ITPE4 IoT Middleware!
