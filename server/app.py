@@ -17,13 +17,19 @@ socketio = SocketIO(cors_allowed_origins=["http://localhost:5173", "http://127.0
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:itpe4-iot-middleware@db.eemlsfydvnkuyfspddml.supabase.co:5432/postgres"
-    CORS(app, 
+    CORS(
+        app,
         resources={r"/*": {
-            "origins": ["http://localhost:5173", "http://127.0.0.1:5173", "https://middleware-iot.vercel.app"],
+            "origins": [
+                "http://localhost:5173", 
+                "http://127.0.0.1:5173", 
+                "https://middleware-iot.vercel.app"
+            ],
             "methods": ["GET", "POST", "OPTIONS"],
-            "allow_headers": ["Content-Type", "Authorization"]
+            "allow_headers": ["Content-Type", "Authorization"],
+            "supports_credentials": True
         }},
-        supports_credentials=True)
+    )
 
     db.init_app(app)
     socketio.init_app(app)
